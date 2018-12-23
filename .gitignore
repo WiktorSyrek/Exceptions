@@ -3,3 +3,5 @@
 ################################################################################
 
 /src/Mwd.Exceptions.Solution/.vs/Mwd.Exceptions.Solution
+/src/Mwd.Exceptions.Solution/Mwd.Exceptions/bin/Debug/netstandard2.0
+/src/Mwd.Exceptions.Solution/Mwd.Exceptions/obj
