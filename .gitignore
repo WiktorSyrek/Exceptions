@@ -5,3 +5,6 @@
 /src/Mwd.Exceptions.Solution/.vs/Mwd.Exceptions.Solution
 /src/Mwd.Exceptions.Solution/Mwd.Exceptions/bin/Debug/netstandard2.0
 /src/Mwd.Exceptions.Solution/Mwd.Exceptions/obj
+/src/Mwd.Exceptions.Solution/Mwd.Exceptions/bin/Debug
+/src/Mwd.Exceptions.Solution/Mwd.Exceptions.Test/bin/Debug
+/src/Mwd.Exceptions.Solution/Mwd.Exceptions.Test/obj
