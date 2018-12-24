@@ -17,6 +17,7 @@ namespace Mwd.Exceptions
         public static T AllExceptions<T>(
             Func<T> action, 
             Action<Exception> exceptionHappened = null)
+            where T : class
         {
             try
             {

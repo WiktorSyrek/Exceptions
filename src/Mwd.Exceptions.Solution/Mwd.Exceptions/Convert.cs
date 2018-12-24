@@ -26,7 +26,12 @@ namespace Mwd.Exceptions
             {
                 return action?.Invoke() ?? default(TResult);
             }
-            catch (TExceptionToCatch exception)
+            catch (TExceptionToCatch ex)
+            {
+                Console.WriteLine(ex);
+                throw ex;
+            }
+            catch (Exception exception) 
             {
                 // Based on generice restriction "TDestinationException : Exception" as-operator should always return 
                 // a valid exception object.
@@ -45,11 +50,11 @@ namespace Mwd.Exceptions
         /// <returns></returns>
         public static void To<TExceptionToCatch, TExceptionToThrow>(
             Action action,
-            string errorTextToIncludeInThrownException)
+            string errorTextToIncludeInThrownException = null)
             where TExceptionToCatch : Exception
             where TExceptionToThrow : Exception
             =>
-            Convert.To<Void, TExceptionToCatch, TExceptionToThrow>(
+            To<Void, TExceptionToCatch, TExceptionToThrow>(
                 () =>
                 {
                     action?.Invoke();
