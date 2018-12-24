@@ -12,7 +12,16 @@ namespace Mwd.Exceptions.Test
         {
             Assert.Throws<MyCustomException>(() =>
             {
-                Exceptions.Convert.To<NullReferenceException, MyCustomException>(() => throw new ArgumentNullException("Test"));
+                Exceptions.Convert.To<ArgumentNullException, MyCustomException>(() => throw new ArgumentNullException("Test"));
+            });
+        }
+
+        [Test]
+        public void ConvertRethrowsUnspecifiedEception()
+        {
+            Assert.Throws<NullReferenceException>(() =>
+            {
+                Exceptions.Convert.To<ArgumentNullException, MyCustomException>(() => throw new NullReferenceException("Test"));
             });
         }
     }
