@@ -35,5 +35,6 @@ public void CatchDoesntPopulateException()
   );
 }
 
-
 ```
+
+As the name says `CatchAll` catches all kind of exceptions. `CatchAll` accepts an additional (optional) delegate populating the cought exception to e.g. log it to a file.
