@@ -3,11 +3,14 @@ namespace Mwd.Exceptions
 {
     using System;
 
+    /// <summary>
+    /// Defines an exception boundary.
+    /// </summary>
     public static class Boundary
     {
         /// <summary>
-        /// Calls <see cref="action"/>. If an exception happened the user can use the optional
-        /// <see cref="exceptionHappened"/> parameter to e.g. log the exception.
+        /// Calls <paramref name="action"/>. If an exception happened the user can use the optional
+        /// <paramref name="exceptionHappened"/> parameter to e.g. log the exception.
         /// </summary>
         /// <param name="action"></param>
         /// <param name="exceptionHappened"></param>

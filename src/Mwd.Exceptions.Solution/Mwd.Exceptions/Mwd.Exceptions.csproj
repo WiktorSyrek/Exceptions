@@ -7,9 +7,15 @@
     <PackageProjectUrl>https://github.com/moerwald/Exceptions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/moerwald/Exceptions</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Description>Helper methods to convert, ignore, or build an exception boundary.</Description>
-    <PackageReleaseNotes>Added new overloads for Ignore.SomeExceptions.</PackageReleaseNotes>
+    <PackageReleaseNotes>Now threating warnings as errors. Added docu.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <DocumentationFile>C:\Users\Mewald-T550\source\repos\Exceptions\src\Mwd.Exceptions.Solution\Mwd.Exceptions\Mwd.Exceptions.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

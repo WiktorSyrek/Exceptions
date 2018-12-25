@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mwd.Exceptions</name>
+    </assembly>
+    <members>
+        <member name="T:Mwd.Exceptions.Boundary">
+            <summary>
+            Defines an exception boundary.
+            </summary>
+        </member>
+        <member name="M:Mwd.Exceptions.Boundary.CatchAll(System.Action,System.Action{System.Exception})">
+            <summary>
+            Calls <paramref name="action"/>. If an exception happened the user can use the optional
+            <paramref name="exceptionHappened"/> parameter to e.g. log the exception.
+            </summary>
+            <param name="action"></param>
+            <param name="exceptionHappened"></param>
+        </member>
+        <member name="T:Mwd.Exceptions.Convert">
+            <summary>
+            Defines convertion methods to e.g. convert ExceptionA to ExceptionB.
+            </summary>
+        </member>
+        <member name="M:Mwd.Exceptions.Convert.To``3(System.Func{``0},System.String)">
+            <summary>
+            
+            Converts the given TExceptionToCatch type to TExceptionToThrow type.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TExceptionToCatch"></typeparam>
+            <typeparam name="TExceptionToThrow"></typeparam>
+            <param name="action"></param>
+            <param name="errorTextToIncludeInThrownException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mwd.Exceptions.Convert.To``2(System.Action,System.String)">
+            <summary>
+            Void implementation
+            </summary>
+            <typeparam name="TExceptionToCatch"></typeparam>
+            <typeparam name="TExceptionToThrow"></typeparam>
+            <param name="action"></param>
+            <param name="errorTextToIncludeInThrownException"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mwd.Exceptions.Ignore">
+            <summary>
+            Holds several methods to ignore exceptions.
+            </summary>
+        </member>
+        <member name="M:Mwd.Exceptions.Ignore.AllExceptions``1(System.Func{``0},System.Action{System.Exception})">
+            <summary>
+            Calls <paramref name="action"/>. If an exception happened the user can use the optional
+            <paramref name="exceptionHappened"/> parameter to e.g. log the exception.
+            </summary>
+            <param name="action"></param>
+            <param name="exceptionHappened"></param>
+        </member>
+        <member name="M:Mwd.Exceptions.Ignore.AllExceptions(System.Action,System.Action{System.Exception})">
+            <summary>
+            <see cref="M:Mwd.Exceptions.Ignore.AllExceptions``1(System.Func{``0},System.Action{System.Exception})"/>.
+            </summary>
+            <param name="action"></param>
+            <param name="exceptionHappened"></param>
+        </member>
+        <member name="M:Mwd.Exceptions.Ignore.SomeExceptions``1(System.Func{``0},System.Collections.Generic.IEnumerable{System.Type},System.Action{System.Exception})">
+            <summary>
+            Calls <paramref name="action"/>. User can add a bunch of exception types that get ignored.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="action"></param>
+            <param name="exceptionsToIgnore"></param>
+            <param name="ignoredExceptioHappened"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mwd.Exceptions.Ignore.SomeExceptions(System.Action,System.Collections.Generic.IEnumerable{System.Type},System.Action{System.Exception})">
+            <summary>
+            Same as <see cref="M:Mwd.Exceptions.Ignore.SomeExceptions``1(System.Func{``0},System.Collections.Generic.IEnumerable{System.Type},System.Action{System.Exception})"/>, except that it uses an <see cref="T:System.Action"/>.
+            </summary>
+            <param name="action"></param>
+            <param name="exceptionsToIgnore"></param>
+            <param name="ignoredExceptioHappened"></param>
+        </member>
+        <member name="M:Mwd.Exceptions.Ignore.SomeExceptions``2(System.Func{``0},System.Action{System.Exception})">
+            <summary>
+            See <see cref="M:Mwd.Exceptions.Ignore.SomeExceptions``1(System.Func{``0},System.Collections.Generic.IEnumerable{System.Type},System.Action{System.Exception})"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TException1"></typeparam>
+            <param name="action"></param>
+            <param name="ignoredExceptioHappened"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mwd.Exceptions.Ignore.SomeExceptions``3(System.Func{``0},System.Action{System.Exception})">
+            <summary>
+            See <see cref="M:Mwd.Exceptions.Ignore.SomeExceptions``1(System.Func{``0},System.Collections.Generic.IEnumerable{System.Type},System.Action{System.Exception})"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TException1"></typeparam>
+            <typeparam name="TException2"></typeparam>
+            <param name="action"></param>
+            <param name="ignoredExceptioHappened"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mwd.Exceptions.Ignore.SomeExceptions``4(System.Func{``0},System.Action{System.Exception})">
+            <summary>
+            See <see cref="M:Mwd.Exceptions.Ignore.SomeExceptions``1(System.Func{``0},System.Collections.Generic.IEnumerable{System.Type},System.Action{System.Exception})"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TException1"></typeparam>
+            <typeparam name="TException2"></typeparam>
+            <typeparam name="TException3"></typeparam>
+            <param name="action"></param>
+            <param name="ignoredExceptioHappened"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mwd.Exceptions.Ignore.SomeExceptions``1(System.Action,System.Action{System.Exception})">
+            <summary>
+            See <see cref="M:Mwd.Exceptions.Ignore.SomeExceptions(System.Action,System.Collections.Generic.IEnumerable{System.Type},System.Action{System.Exception})"/>
+            </summary>
+            <typeparam name="TException1"></typeparam>
+            <param name="action"></param>
+            <param name="ignoredExceptioHappened"></param>
+        </member>
+        <member name="M:Mwd.Exceptions.Ignore.SomeExceptions``2(System.Action,System.Action{System.Exception})">
+            <summary>
+            See <see cref="M:Mwd.Exceptions.Ignore.SomeExceptions(System.Action,System.Collections.Generic.IEnumerable{System.Type},System.Action{System.Exception})"/>
+            </summary>
+            <typeparam name="TException1"></typeparam>
+            <typeparam name="TException2"></typeparam>
+            <param name="action"></param>
+            <param name="ignoredExceptioHappened"></param>
+        </member>
+        <member name="M:Mwd.Exceptions.Ignore.SomeExceptions``3(System.Action,System.Action{System.Exception})">
+            <summary>
+            See <see cref="M:Mwd.Exceptions.Ignore.SomeExceptions(System.Action,System.Collections.Generic.IEnumerable{System.Type},System.Action{System.Exception})"/>
+            </summary>
+            <typeparam name="TException1"></typeparam>
+            <typeparam name="TException2"></typeparam>
+            <typeparam name="TException3"></typeparam>
+            <param name="action"></param>
+            <param name="ignoredExceptioHappened"></param>
+        </member>
+        <member name="T:Mwd.Exceptions.Void">
+            <summary>
+            Used to generate proxy function.
+            </summary>
+        </member>
+    </members>
+</doc>

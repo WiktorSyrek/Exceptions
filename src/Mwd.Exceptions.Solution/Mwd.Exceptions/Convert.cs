@@ -3,6 +3,9 @@ namespace Mwd.Exceptions
 {
     using System;
 
+    /// <summary>
+    /// Defines convertion methods to e.g. convert ExceptionA to ExceptionB.
+    /// </summary>
     public static class Convert
     {
         /// <summary>
