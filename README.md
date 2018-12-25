@@ -38,3 +38,27 @@ public void CatchDoesntPopulateException()
 ```
 
 As the name says `CatchAll` catches all kind of exceptions. `CatchAll` accepts an additional (optional) delegate populating the cought exception to e.g. log it to a file.
+
+## Convert
+
+The `Convert` class translates `ExceptionA` to `ExceptionB`. This behaviour is usefull to translate a standard exception to a custom one. Example: You've a config class, every error during config loading, parsing, validating shall be communicated via an `ConfigException`. Based on that you're able to e.g. wrap a `FileNotFound`-exception in a `ConfigException` (where the inner exeption is `FileNotFound`).
+
+Example:
+
+```C#
+        [Test]
+        public void ConvertExceptionToMyCustomException()
+        {
+            var caughtException = Assert.Throws<MyCustomException>(() =>
+            {
+                Exceptions.Convert.To<ArgumentNullException, MyCustomException>(() => throw new ArgumentNullException("Test"));
+            });
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(caughtException.InnerException, Is.Not.Null);
+                Assert.That(caughtException.InnerException.GetType(), Is.EqualTo(typeof(ArgumentNullException)));
+            });
+        }
+
+```
