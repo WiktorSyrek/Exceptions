@@ -49,7 +49,7 @@ namespace Mwd.Exceptions
 
 
         /// <summary>
-        /// Calls <see cref="action"/>. User can 
+        /// Calls <see cref="action"/>. User can add a bunch of exception types that get ignored
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="action"></param>
@@ -58,7 +58,7 @@ namespace Mwd.Exceptions
         /// <returns></returns>
         public static T SomeExceptions<T>(
             Func<T> action, 
-            IEnumerable<Exception> exceptionsToIgnore, 
+            IEnumerable<Type> exceptionsToIgnore, 
             Action<Exception> ignoredExceptioHappened = null)
         {
             try
@@ -75,5 +75,77 @@ namespace Mwd.Exceptions
                 throw;
             }
         }
+
+        /// <summary>
+        /// Same as <see cref="SomeExceptions{T}(Func{T}, IEnumerable{Type}, Action{Exception})"/>, except that it uses an <see cref="Action"/>.
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="exceptionsToIgnore"></param>
+        /// <param name="ignoredExceptioHappened"></param>
+        public static void SomeExceptions(
+            Action action,
+            IEnumerable<Type> exceptionsToIgnore,
+            Action<Exception> ignoredExceptioHappened = null)
+            =>
+                SomeExceptions<Void>(() =>
+                {
+                    action?.Invoke();
+                    return new Void();
+                }, exceptionsToIgnore, ignoredExceptioHappened);
+
+
+        public static T SomeExceptions<T, TException1>(
+            Func<T> action, 
+            Action<Exception> ignoredExceptioHappened = null)
+            =>
+            SomeExceptions<T>(
+                action, 
+                new List<Type> { typeof(TException1) }, 
+                ignoredExceptioHappened);
+
+        public static T SomeExceptions<T, TException1, TException2>(
+            Func<T> action, 
+            Action<Exception> ignoredExceptioHappened = null)
+            =>
+            SomeExceptions<T>(
+                action, 
+                new List<Type> { typeof(TException1), typeof(TException2) }, 
+                ignoredExceptioHappened);
+
+        public static T SomeExceptions<T, TException1, TException2, TException3>(
+            Func<T> action, 
+            Action<Exception> ignoredExceptioHappened = null)
+            =>
+            SomeExceptions<T>(
+                action, 
+                new List<Type> { typeof(TException1), typeof(TException2), typeof(TException3) }, 
+                ignoredExceptioHappened);
+
+        public static void  SomeExceptions<TException1>(
+            Action action, 
+            Action<Exception> ignoredExceptioHappened = null)
+            =>
+            SomeExceptions(
+                action, 
+                new List<Type> { typeof(TException1) }, 
+                ignoredExceptioHappened);
+
+        public static void SomeExceptions<TException1, TException2>(
+            Action action, 
+            Action<Exception> ignoredExceptioHappened = null)
+            =>
+            SomeExceptions(
+                action, 
+                new List<Type> { typeof(TException1), typeof(TException2) }, 
+                ignoredExceptioHappened);
+
+        public static void SomeExceptions<TException1, TException2, TException3>(
+            Action action, 
+            Action<Exception> ignoredExceptioHappened = null)
+            =>
+            SomeExceptions(
+                action, 
+                new List<Type> { typeof(TException1), typeof(TException2), typeof(TException3) }, 
+                ignoredExceptioHappened);
     }
 }

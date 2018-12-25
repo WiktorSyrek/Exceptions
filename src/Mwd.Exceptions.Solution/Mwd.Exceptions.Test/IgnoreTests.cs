@@ -1,12 +1,10 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Mwd.Exceptions.Test
 {
+    using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+
     [TestFixture]
     public class IgnoreTests
     {
@@ -47,21 +45,49 @@ namespace Mwd.Exceptions.Test
             {
                 var result = Ignore.AllExceptions(() => "Hello World");
                 Assert.That(result, Is.EqualTo("Hello World"));
-            } );
+            });
         }
 
-        //[Test]
-        //public void IgnoreSomeExceptionsCaughtExceptionIsIgnored()
-        //{
-        //    Assert.DoesNotThrow(
-        //        () =>
-        //        {
-        //            var result = Ignore.SomeExceptions<bool>(() =>
-        //            {
-        //                return true;
-        //            });
-        //        }
-        //        );
-        //}
+        [Test]
+        public void IgnoreSomeExceptionsCaughtExceptionIsIgnored()
+        {
+            Assert.DoesNotThrow(
+                () =>
+                {
+                    var result = Ignore.SomeExceptions<bool, ArgumentException, NullReferenceException, FormatException>(() =>
+                    {
+                        throw new ArgumentException("Test");
+                    });
+
+                    Assert.That(result, Is.False);
+                }
+                );
+        }
+
+        [Test]
+        public void IgnoreRethrowExceptionThatDoesntMatch()
+        {
+            Assert.Throws<ArgumentException>(
+                () =>
+                {
+                    Exception occurredException = null;
+
+                    // Act
+                    var result = Ignore.SomeExceptions<bool, ArgumentNullException, NullReferenceException, FormatException>(() =>
+                    {
+                        throw new ArgumentException("Test");
+                    },
+                    e => occurredException = e);
+
+                    // Assert
+                    Assert.Multiple(() =>
+                    {
+                        Assert.That(result, Is.False);
+                        Assert.That(occurredException, Is.Not.Null);
+                        Assert.That(occurredException.GetType(), Is.EqualTo(typeof(ArgumentException)));
+                    });
+                }
+                );
+        }
     }
 }

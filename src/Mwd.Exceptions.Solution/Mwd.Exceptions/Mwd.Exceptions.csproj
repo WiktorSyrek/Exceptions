@@ -3,10 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Copyright>Moerwald</Copyright>
-    <PackageLicenseUrl>https://github.com/moerwald/Exceptions/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/moerwald/Exceptions/blob/master/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/moerwald/Exceptions/blob/master/</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/moerwald/Exceptions</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/moerwald/Exceptions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/moerwald/Exceptions</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.1.0</Version>
+    <Description>Helper methods to convert, ignore, or build an exception boundary.</Description>
+    <PackageReleaseNotes>Added new overloads for Ignore.SomeExceptions.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
