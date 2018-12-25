@@ -25,15 +25,15 @@ blocks. In my oppionion these blocks should only work as exception boundary. Sin
 
 ```C#
 
- [Test]
-public void CatchDoesntPopulateException()
-{
-  Assert.DoesNotThrow(
-    () => Boundary.CatchAll(
-      () => throw new Exception("Test")
-    )
-  );
-}
+    [Test]
+    public void CatchDoesntPopulateException()
+    {
+      Assert.DoesNotThrow(
+        () => Boundary.CatchAll(
+          () => throw new Exception("Test")
+        )
+      );
+    }
 
 ```
 
@@ -62,3 +62,25 @@ Example:
         }
 
 ```
+
+# Ignore
+
+Sometimes you only want to work with return types, and don't bother any exception. The `Ignore` class offers an `AllExceptions` and `SomeExceptions` method (which are self-explanatory).
+
+```C#
+
+        [Test]
+        public void IgnoreExceptionAndReturnNativeType()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                var result = Ignore.AllExceptions<bool>(() => throw new Exception("Test"));
+                Assert.That(result, Is.False);
+            });
+        }
+
+```
+
+In case of an exception `AllExceptions<bool>` returns the default value of the given generic type (in case of bool `false`). As other methods `AllExceptions<bool>` offers an delegate to e.g. log the occurred exceptions.
+
+
