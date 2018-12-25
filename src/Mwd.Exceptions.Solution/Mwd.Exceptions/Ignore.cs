@@ -17,7 +17,6 @@ namespace Mwd.Exceptions
         public static T AllExceptions<T>(
             Func<T> action, 
             Action<Exception> exceptionHappened = null)
-            where T : class
         {
             try
             {
@@ -57,11 +56,10 @@ namespace Mwd.Exceptions
         /// <param name="exceptionsToIgnore"></param>
         /// <param name="ignoredExceptioHappened"></param>
         /// <returns></returns>
-        public static T SomeExceptions<T, TExceptionsToIgnore>(
+        public static T SomeExceptions<T>(
             Func<T> action, 
-            IEnumerable<TExceptionsToIgnore> exceptionsToIgnore, 
+            IEnumerable<Exception> exceptionsToIgnore, 
             Action<Exception> ignoredExceptioHappened = null)
-            where TExceptionsToIgnore : Exception
         {
             try
             {

@@ -31,6 +31,16 @@ namespace Mwd.Exceptions.Test
         }
 
         [Test]
+        public void IgnoreExceptionAndReturnNativeType()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                var result = Ignore.AllExceptions<bool>(() => throw new Exception("Test"));
+                Assert.That(result, Is.False);
+            });
+        }
+
+        [Test]
         public void NoExceptionThrownReturnString()
         {
             Assert.DoesNotThrow(() =>
@@ -39,5 +49,19 @@ namespace Mwd.Exceptions.Test
                 Assert.That(result, Is.EqualTo("Hello World"));
             } );
         }
+
+        //[Test]
+        //public void IgnoreSomeExceptionsCaughtExceptionIsIgnored()
+        //{
+        //    Assert.DoesNotThrow(
+        //        () =>
+        //        {
+        //            var result = Ignore.SomeExceptions<bool>(() =>
+        //            {
+        //                return true;
+        //            });
+        //        }
+        //        );
+        //}
     }
 }

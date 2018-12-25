@@ -10,9 +10,15 @@ namespace Mwd.Exceptions.Test
         [Test]
         public void ConvertExceptionToMyCustomException()
         {
-            Assert.Throws<MyCustomException>(() =>
+            var caughtException = Assert.Throws<MyCustomException>(() =>
             {
                 Exceptions.Convert.To<ArgumentNullException, MyCustomException>(() => throw new ArgumentNullException("Test"));
+            });
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(caughtException.InnerException, Is.Not.Null);
+                Assert.That(caughtException.InnerException.GetType(), Is.EqualTo(typeof(ArgumentNullException)));
             });
         }
 
