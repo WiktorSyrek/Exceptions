@@ -81,6 +81,24 @@ Sometimes you only want to work with return types, and don't bother any exceptio
 
 ```
 
-In case of an exception `AllExceptions<bool>` returns the default value of the given generic type (in case of bool `false`). As other methods `AllExceptions<bool>` offers an delegate to e.g. log the occurred exceptions.
+In case of an exception `AllExceptions<bool>` returns the default value of the given generic type (in case of bool `false`). As other methods `AllExceptions<bool>` offers an delegate to e.g. log the occurred exceptions. `Ignore`class also offers a `SomeExceptions`method:
+
+```C#
+  [Test]
+        public void IgnoreSomeExceptionsCaughtExceptionIsIgnored()
+        {
+            Assert.DoesNotThrow(
+                () =>
+                {
+                    var result = Ignore.SomeExceptions<bool, ArgumentException, NullReferenceException, FormatException>(() =>
+                    {
+                        throw new ArgumentException("Test");
+                    });
+
+                    Assert.That(result, Is.False);
+                }
+                );
+        }
+```
 
 
