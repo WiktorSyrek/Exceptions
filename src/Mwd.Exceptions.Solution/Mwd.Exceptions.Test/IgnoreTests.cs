@@ -3,7 +3,6 @@ namespace Mwd.Exceptions.Test
 {
     using NUnit.Framework;
     using System;
-    using System.Collections.Generic;
 
     [TestFixture]
     public class IgnoreTests
