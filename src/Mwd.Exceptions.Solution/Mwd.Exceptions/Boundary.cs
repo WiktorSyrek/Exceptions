@@ -3,7 +3,6 @@ namespace Mwd.Exceptions
 {
     using System;
     
-    Force build to fail to test status badge.
 
     /// <summary>
     /// Defines an exception boundary.
