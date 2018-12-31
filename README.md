@@ -1,5 +1,5 @@
 [![Build Status](https://dev.azure.com/andreasmewald/Exceptions/_apis/build/status/moerwald.Exceptions?branchName=master)](https://dev.azure.com/andreasmewald/Exceptions/_build/latest?definitionId=1?branchName=master)
-[![Build Status](https://dev.azure.com/andreasmewald/Exceptions/_apis/build/status/moerwald.Exceptions?branchName=master)](https://dev.azure.com/andreasmewald/Exceptions/_build/latest?definitionId=1?branchName=master)
+[![](https://img.shields.io/azure-devops/tests/andreasmewald/Exceptions/1.svg)](https://dev.azure.com/andreasmewald/Exceptions)
 
 [![](https://img.shields.io/nuget/dt/Mwd.Exceptions.svg)](Mwd.Exceptions)
 [![](https://img.shields.io/nuget/v/Mwd.Exceptions.svg)](https://www.nuget.org/packages/Mwd.Exceptions)
