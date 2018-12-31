@@ -1,5 +1,7 @@
 [![Build Status](https://dev.azure.com/andreasmewald/Exceptions/_apis/build/status/moerwald.Exceptions?branchName=master)](https://dev.azure.com/andreasmewald/Exceptions/_build/latest?definitionId=1?branchName=master)
 
+[![Nuget downloads](https://img.shields.io/nuget/dt/Mwd.Exceptions.svg)](Mwd.Exceptions)
+
 # Exceptions
 
 This module offers the following exception helpers:
