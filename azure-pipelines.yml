@@ -10,8 +10,6 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
@@ -20,6 +18,7 @@ steps:
     dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 - script: |
+    cd src\Mwd.Exceptions.Solution
     mkdir $(Build.SourcesDirectory)\results
     dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  
     copy $(Build.SourcesDirectory)\Mwd.Exceptions.Test\coverage.cobertura.xml $(Build.SourcesDirectory)\results
