@@ -19,7 +19,7 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
 - script: |
     cd src\Mwd.Exceptions.Solution
-    dotnet pack
+    dotnet pack --configuration $(buildConfiguration)
   displayName: 'dotnet pack $(buildConfiguration)'
 - script: |
     echo $(Build.SourcesDirectory)
