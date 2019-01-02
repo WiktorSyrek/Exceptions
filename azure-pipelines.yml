@@ -15,19 +15,21 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@0
-
-- task: NuGetCommand@2
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+- script: |
+    mkdir $(Build.SourcesDirectory)\results
+    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  
+    copy $(Build.SourcesDirectory)\Mwd.Exceptions.Test\coverage.cobertura.xml $(Build.SourcesDirectory)\results
+    dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.0-rc4
+    .\reportgenerator "-reports:$(Build.SourcesDirectory)\Mwd.Exceptions.Test\coverage.cobertura.xml" "-targetdir:results" "-reporttypes:HTMLInline;HTMLChart"
+  displayName: 'Unit testing'
+- task: PublishTestResults@2
   inputs:
-    restoreSolution: '$(solution)'
-
-- task: VSBuild@1
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+- task: PublishCodeCoverageResults@1
   inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    summaryFileLocation: $(Build.SourcesDirectory)\results\coverage.cobertura.xml
+    reportDirectory: $(Build.SourcesDirectory)\results
+    codecoverageTool: cobertura
