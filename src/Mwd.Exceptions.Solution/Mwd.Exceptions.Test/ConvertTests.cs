@@ -24,7 +24,7 @@ namespace Mwd.Exceptions.Test
 
         [Test]
         public void ConvertRethrowsUnspecifiedEception()
-        {
+        {    
             Assert.Throws<NullReferenceException>(() =>
             {
                 Exceptions.Convert.To<ArgumentNullException, MyCustomException>(() => throw new NullReferenceException("Test"));

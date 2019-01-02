@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mwd.Exceptions", "Mwd.Exceptions\Mwd.Exceptions.csproj", "{F7508C3B-03E0-410F-9340-0D7516199776}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mwd.Exceptions.Test", "Mwd.Exceptions.Test\Mwd.Exceptions.Test.csproj", "{2C8C9581-E2CC-467A-B077-F78164D97605}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mwd.Exceptions.Test", "Mwd.Exceptions.Test\Mwd.Exceptions.Test.csproj", "{2C8C9581-E2CC-467A-B077-F78164D97605}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF38A308-3C0B-4C06-A54D-B654F8530E95}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\azure-pipelines.yml = ..\..\azure-pipelines.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
