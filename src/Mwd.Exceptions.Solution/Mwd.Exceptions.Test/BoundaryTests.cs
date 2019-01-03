@@ -21,5 +21,12 @@ namespace Mwd.Exceptions.Test
             Boundary.CatchAll(() => throw new Exception("Test"), e => exceptionHappenedCalled = true);
             Assert.That(exceptionHappenedCalled, Is.True);
         }
+
+        [Test]
+        public void CatchDoesntPopulateExceptionThoughActionIsNull()
+        {
+            Assert.DoesNotThrow(
+                () => Boundary.CatchAll(null));
+        }
     }
 }
