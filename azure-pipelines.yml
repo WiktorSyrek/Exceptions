@@ -10,19 +10,26 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
+- script: |
+    cd src\Mwd.Exceptions.Solution
+    dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 - script: |
+    cd src\Mwd.Exceptions.Solution
+    dotnet pack --configuration $(buildConfiguration)
+  displayName: 'dotnet pack $(buildConfiguration)'
+- script: |
+    echo $(Build.SourcesDirectory)
+    cd src\Mwd.Exceptions.Solution
     mkdir $(Build.SourcesDirectory)\results
     dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  
-    copy $(Build.SourcesDirectory)\Mwd.Exceptions.Test\coverage.cobertura.xml $(Build.SourcesDirectory)\results
-    dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.0-rc4
-    .\reportgenerator "-reports:$(Build.SourcesDirectory)\Mwd.Exceptions.Test\coverage.cobertura.xml" "-targetdir:results" "-reporttypes:HTMLInline;HTMLChart"
+    copy Mwd.Exceptions.Test\coverage.cobertura.xml $(Build.SourcesDirectory)\results
+     dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.0-rc4
+    .\reportgenerator "-reports:$(Build.SourcesDirectory)\results\coverage.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\results" "-reporttypes:HTMLInline;HTMLChart"
+   
   displayName: 'Unit testing'
 - task: PublishTestResults@2
   inputs:
@@ -33,3 +40,15 @@ steps:
     summaryFileLocation: $(Build.SourcesDirectory)\results\coverage.cobertura.xml
     reportDirectory: $(Build.SourcesDirectory)\results
     codecoverageTool: cobertura
+    
+- task: DotNetCoreCLI@2
+  inputs:
+    command: publish
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    projects: src\Mwd.Exceptions.Solution\Mwd.Exceptions\Mwd.Exceptions.csproj
+    publishWebProjects: false
+    modifyOutputPath: true
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+
