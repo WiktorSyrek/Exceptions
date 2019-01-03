@@ -30,5 +30,27 @@ namespace Mwd.Exceptions.Test
                 Exceptions.Convert.To<ArgumentNullException, MyCustomException>(() => throw new NullReferenceException("Test"));
             });
         }
+
+        [Test]
+        public void ToIgnoreInvalidActionObjects()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                Exceptions.Convert.To<ArgumentNullException, MyCustomException>(null);
+            });
+        }
+
+        [Test]
+        public void ToIgnoreInvalidFuncObjectsAndReturnDefault()
+        {
+            string returnValue = "test";
+            Assert.DoesNotThrow(() =>
+            {
+                returnValue = Exceptions.Convert.To<string,ArgumentNullException, MyCustomException>(null);
+            });
+
+            // Func object was null, check if the return value is set to default(T)
+            Assert.That(returnValue, Is.Null);
+        }
     }
 }
