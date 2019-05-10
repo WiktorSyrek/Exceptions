@@ -24,11 +24,11 @@ steps:
     projectKey: 'moerwald_Exceptions'
     projectName: 'Exceptions'
 
-
 # Install SonarScanner
-#- script: |
-#    dotnet tool install --global dotnet-sonarscanner
-#  displayName: 'install sonarscanner'
+- script: |
+     dotnet tool install --global dotnet-sonarscanner
+  displayName: 'install sonarscanner'
+  
 # Run Sonar
 - script: |
      dotnet sonarscanner begin /k:"moerwald_Exceptions" 
