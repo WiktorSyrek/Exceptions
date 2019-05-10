@@ -73,10 +73,6 @@ namespace Mwd.Exceptions
                 ignoredExceptioHappened?.Invoke(exception);
                 return default(T);
             }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
         /// <summary>
