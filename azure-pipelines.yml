@@ -17,9 +17,11 @@ steps:
 # Install SonarScanner
 - script: |
     dotnet tool install --global dotnet-sonarscanner
+    displayName: 'install sonarscanner'
 # Run Sonar
 - script: |
     dotnet sonarscanner begin /k:"moerwald_Exceptions" /d:sonar.organization="moerwald-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="fe93ca1ba905b61d698c76a97c2ae22381597b32"
+    displayName: 'sonarscanner begin'
     
 # Compile   
 - script: |
@@ -45,6 +47,7 @@ steps:
 # End SonarScanner
 - script: |
     dotnet sonarscanner end /d:sonar.login="fe93ca1ba905b61d698c76a97c2ae22381597b32"   
+    displayName: 'sonarscanner end'
    
   
 - task: PublishTestResults@2
