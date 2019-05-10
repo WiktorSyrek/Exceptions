@@ -11,8 +11,17 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  buildId: "1$(Build.BuildId)"
 
 steps:
+# Install SonarScanner
+- script: |
+    dotnet tool install --global dotnet-sonarscanner
+# Run Sonar
+- script: |
+    %USERPROFILE%\.dotnet\tools\dotnet-sonarscanner begin /k:"moerwald_Exceptions" /d:sonar.organization="moerwald-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="fe93ca1ba905b61d698c76a97c2ae22381597b32"
+    
+# Compile   
 - script: |
     cd src\Mwd.Exceptions.Solution
     dotnet build --configuration $(buildConfiguration)
@@ -21,6 +30,8 @@ steps:
     cd src\Mwd.Exceptions.Solution
     dotnet pack --configuration $(buildConfiguration)
   displayName: 'dotnet pack $(buildConfiguration)'
+  
+# Run tests
 - script: |
     echo $(Build.SourcesDirectory)
     cd src\Mwd.Exceptions.Solution
@@ -29,8 +40,13 @@ steps:
     copy Mwd.Exceptions.Test\coverage.cobertura.xml $(Build.SourcesDirectory)\results
      dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.0-rc4
     .\reportgenerator "-reports:$(Build.SourcesDirectory)\results\coverage.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\results" "-reporttypes:HTMLInline;HTMLChart"
+    displayName: 'Unit testing' 
    
-  displayName: 'Unit testing'
+# End SonarScanner
+- script: |
+    %USERPROFILE%\.dotnet\tools\dotnet-sonarscanner end /d:sonar.login="fe93ca1ba905b61d698c76a97c2ae22381597b32"   
+   
+  
 - task: PublishTestResults@2
   inputs:
     testRunner: VSTest
