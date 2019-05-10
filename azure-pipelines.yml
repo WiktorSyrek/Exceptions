@@ -1,4 +1,5 @@
 # .NET Desktop
+
 # Build and run tests for .NET Desktop or Windows classic desktop solutions.
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
@@ -14,14 +15,24 @@ variables:
   buildId: "1$(Build.BuildId)"
 
 steps:
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'Sonarcloud'
+    organization: 'moerwald-github'
+    scannerMode: 'MSBuild'
+    projectKey: 'moerwald_Exceptions'
+    projectName: 'Exceptions'
+
+
 # Install SonarScanner
-- script: |
-    dotnet tool install --global dotnet-sonarscanner
-  displayName: 'install sonarscanner'
+#- script: |
+#    dotnet tool install --global dotnet-sonarscanner
+#  displayName: 'install sonarscanner'
 # Run Sonar
-- script: |
-    dotnet sonarscanner begin /k:"moerwald_Exceptions" /d:sonar.organization="moerwald-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="fe93ca1ba905b61d698c76a97c2ae22381597b32"
-  displayName: 'sonarscanner begin'
+#- script: |
+#    dotnet sonarscanner begin /k:"moerwald_Exceptions" /d:sonar.organization="moerwald-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="fe93ca1ba905b61d698c76a97c2ae22381597b32"
+#  displayName: 'sonarscanner begin'
     
 # Compile   
 - script: |
@@ -45,9 +56,14 @@ steps:
     displayName: 'Unit testing' 
    
 # End SonarScanner
-- script: |
-    dotnet sonarscanner end /d:sonar.login="fe93ca1ba905b61d698c76a97c2ae22381597b32"   
-  displayName: 'sonarscanner end'
+#- script: |
+#    dotnet sonarscanner end /d:sonar.login="fe93ca1ba905b61d698c76a97c2ae22381597b32"   
+#  displayName: 'sonarscanner end'
+
+    
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
    
   
 - task: PublishTestResults@2
