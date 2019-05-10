@@ -54,6 +54,12 @@ steps:
      dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.0-rc4
     .\reportgenerator "-reports:$(Build.SourcesDirectory)\results\coverage.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\results" "-reporttypes:HTMLInline;HTMLChart"
   displayName: 'Unit testing' 
+
+- script: |
+    echo $(Build.SourcesDirectory)
+    cd src\Mwd.Exceptions.Solution
+    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover  
+  displayName: 'Unit testing (format=opencover)' 
    
 # End SonarScanner
 - script: |
