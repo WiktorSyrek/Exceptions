@@ -60,6 +60,7 @@ steps:
     cd src\Mwd.Exceptions.Solution
     mkdir $(Build.SourcesDirectory)\resultsOpenCover
     dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover  
+    dir Mwd.Exceptions.Test
     copy Mwd.Exceptions.Test\coverage.opencover.xml $(Build.SourcesDirectory)\resultsOpenCover
     dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.0-rc4
     .\reportgenerator "-reports:$(Build.SourcesDirectory)\results\coverage.opencover.xml" "-targetdir:$(Build.SourcesDirectory)\resultsOpenCover" "-reporttypes:HTMLInline;HTMLChart"
