@@ -44,26 +44,18 @@ steps:
     dotnet pack --configuration $(buildConfiguration)
   displayName: 'dotnet pack $(buildConfiguration)'
   
-# Run tests
-#- script: |
-#    echo $(Build.SourcesDirectory)
-#    cd src\Mwd.Exceptions.Solution
-#    mkdir $(Build.SourcesDirectory)\results
-#    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  
-#    copy Mwd.Exceptions.Test\coverage.cobertura.xml $(Build.SourcesDirectory)\results
-#     dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.0-rc4
-#    .\reportgenerator "-reports:$(Build.SourcesDirectory)\results\coverage.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\results" "-reporttypes:HTMLInline;HTMLChart"
-#  displayName: 'Unit testing' 
-
+# Run tests, opencover format is needed for sonar, therefore we need to run tests twice
 - script: |
     echo $(Build.SourcesDirectory)
     cd src\Mwd.Exceptions.Solution
-    mkdir $(Build.SourcesDirectory)\resultsOpenCover
-    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover  
-    copy Mwd.Exceptions.Test\coverage.opencover.xml $(Build.SourcesDirectory)\resultsOpenCover
+    mkdir $(Build.SourcesDirectory)\results
+    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura  
+    copy Mwd.Exceptions.Test\coverage.cobertura.xml $(Build.SourcesDirectory)\results
     dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.0-rc4
-    .\reportgenerator "-reports:$(Build.SourcesDirectory)\resultsOpenCover\coverage.opencover.xml" "-targetdir:$(Build.SourcesDirectory)\resultsOpenCover" "-reporttypes:HTMLInline;HTMLChart"
-  displayName: 'Unit testing (format=opencover)' 
+    .\reportgenerator "-reports:$(Build.SourcesDirectory)\results\coverage.cobertura.xml" "-targetdir:$(Build.SourcesDirectory)\results" "-reporttypes:HTMLInline;HTMLChart"
+    dotnet test --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover 
+  displayName: 'Unit testing' 
+
    
 # End SonarScanner
 - script: |
