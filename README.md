@@ -3,6 +3,11 @@
 [![](https://img.shields.io/azure-devops/coverage/andreasmewald/Exceptions/1.svg)](https://dev.azure.com/andreasmewald/Exceptions/_build?definitionId=1)
 [![](https://img.shields.io/nuget/dt/Mwd.Exceptions.svg)](Mwd.Exceptions)
 [![](https://img.shields.io/nuget/v/Mwd.Exceptions.svg)](https://www.nuget.org/packages/Mwd.Exceptions)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=moerwald_Exceptions&metric=alert_status)](https://sonarcloud.io/dashboard?id=moerwald_Exceptions)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=moerwald_Exceptions&metric=code_smells)](https://sonarcloud.io/dashboard?id=moerwald_Exceptions)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=moerwald_Exceptions&metric=ncloc)](https://sonarcloud.io/dashboard?id=moerwald_Exceptions)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=moerwald_Exceptions&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=moerwald_Exceptions)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=moerwald_Exceptions&metric=security_rating)](https://sonarcloud.io/dashboard?id=moerwald_Exceptions)
 
 # Exceptions
 
