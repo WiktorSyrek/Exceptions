@@ -8,6 +8,7 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=moerwald_Exceptions&metric=ncloc)](https://sonarcloud.io/dashboard?id=moerwald_Exceptions)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=moerwald_Exceptions&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=moerwald_Exceptions)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=moerwald_Exceptions&metric=security_rating)](https://sonarcloud.io/dashboard?id=moerwald_Exceptions)
+[![BCH compliance](https://bettercodehub.com/edge/badge/moerwald/Exceptions?branch=master)](https://bettercodehub.com/)
 
 # Exceptions
 
